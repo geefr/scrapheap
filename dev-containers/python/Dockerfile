@@ -1,0 +1,16 @@
+FROM debian:latest
+ 
+ARG USER=user
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN rm -rf /tmp/* /usr/share/doc/* /usr/share/info/* /var/tmp/*
+RUN useradd -ms /bin/bash $USER
+ENV DISPLAY :0
+
+RUN apt-get update
+RUN apt-get install -y wget x11-utils python3 python3-pip python3-wheel python3-venv
+
+USER $USER
+WORKDIR /home/$USER
+ENTRYPOINT ["/bin/sh", "-c", "$0 \"$@\"", "/bin/bash"]
