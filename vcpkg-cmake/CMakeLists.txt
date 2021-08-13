@@ -1,10 +1,10 @@
 
-cmake_minimum_version(VERSION 3.17)
+cmake_minimum_required(VERSION 3.17)
 
 project(geefr-vcpkg-cmake-template)
 
 find_package(fmt REQUIRED)
 
 add_executable( main src/main.cpp )
-target_link_libraries( main PUBLIC fmt )
+target_link_libraries( main PUBLIC fmt::fmt )
 
